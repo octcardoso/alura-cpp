@@ -3,17 +3,19 @@
 #include <map>
 #include <vector>
 #include <fstream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
-const string PALAVRA_SECRETA = "MELANCIA";
+string palavra_secreta;
 map<char, bool> chutou;
 vector<char> chutes_errados;
 char chute;
 
 bool letra_existe(char chute) {
 	
-	for(char letra : PALAVRA_SECRETA) {
+	for(char letra : palavra_secreta) {
 		if(chute == letra) {
 			return true;
 		}
@@ -23,7 +25,7 @@ bool letra_existe(char chute) {
 }
 
 bool acertou() {
-	for(char letra : PALAVRA_SECRETA) {
+	for(char letra : palavra_secreta) {
 		if(!chutou[letra]) {
 			return false;
 		}
@@ -54,7 +56,7 @@ void imprime_erros() {
 
 void imprime_palavra() {
 
-	for(char letra : PALAVRA_SECRETA) {
+	for(char letra : palavra_secreta) {
 		if(chutou[letra]) {
 			cout << letra << " ";
 		} else {
@@ -81,7 +83,7 @@ void chuta() {
 
 }
 
-void le_arquivo() {
+vector<string> le_arquivo() {
 
 	ifstream arquivo;
 	arquivo.open("./palavras.txt");
@@ -89,13 +91,27 @@ void le_arquivo() {
 	int quantidade_palavras;
 	arquivo >> quantidade_palavras;
 
+	vector<string> palavras_do_arquivo;
+	
 	string palavra_lida;
 
 	for(int i = 0; i < quantidade_palavras; i++) {
 
 		arquivo >> palavra_lida;
-			
+		palavras_do_arquivo.push_back(palavra_lida);	
+
 	}
+
+	return palavras_do_arquivo;
+
+}
+
+void sorteia_palavra() {
+
+	vector<string> palavras = le_arquivo();
+	srand(time(NULL));
+	int indice_aleatorio = rand() % palavras.size();
+	palavra_secreta = palavras[indice_aleatorio];
 
 }
 
@@ -104,7 +120,8 @@ int main() {
 	imprime_cabecalho();
 	cout << endl;
 	
-	le_arquivo();
+	sorteia_palavra();
+	cout << "A palavra sorteada é " << palavra_secreta << endl;
 
 	while(!acertou() && !enforcou()) {
 
@@ -119,7 +136,7 @@ int main() {
 	}
 	
 	cout << "Fim de jogo!" << endl;
-	cout << "A palavra era " << PALAVRA_SECRETA << "." << endl;
+	cout << "A palavra era " << palavra_secreta << "." << endl;
 	if(acertou()) {
 		cout << "Parabéns, você acertou a palavra." << endl;
 	} else {
