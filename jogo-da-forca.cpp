@@ -70,7 +70,16 @@ int main() {
 			cout << "Você errou, a letra " << chute << " não está na palavra" << endl;
 			chutes_errados.push_back(chute);
 		}
+		cout << endl;
 	}
 	
+	cout << "Fim de jogo!" << endl;
+	cout << "A palavra era " << PALAVRA_SECRETA << "." << endl;
+	if(acertou()) {
+		cout << "Parabéns, você acertou a palavra." << endl;
+	} else {
+		cout << "Você perdeu, tente novamente." << endl;
+	}
+
 	return 0;
 }
