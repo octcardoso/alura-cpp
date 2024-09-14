@@ -22,6 +22,11 @@ bool letra_existe(char chute) {
 
 int main() {
 	
+	cout << "*****************" << endl;
+	cout << "* Jogo da Forca *" << endl;
+	cout << "*****************" << endl;
+	cout << endl;
+
 	bool acertou, enforcou = false;
 	char chute;
 
