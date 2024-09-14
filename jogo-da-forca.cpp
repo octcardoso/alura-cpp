@@ -8,6 +8,7 @@ using namespace std;
 const string PALAVRA_SECRETA = "MELANCIA";
 map<char, bool> chutou;
 vector<char> chutes_errados;
+char chute;
 
 bool letra_existe(char chute) {
 	
@@ -33,44 +34,67 @@ bool enforcou() {
 	return chutes_errados.size() > 4;
 }
 
-int main() {
-	
+void imprime_cabecalho() {
+
 	cout << "*****************" << endl;
 	cout << "* Jogo da Forca *" << endl;
 	cout << "*****************" << endl;
+
+}
+
+void imprime_erros() {
+
+	cout << "Chutes errados: ";
+	for(char letra : chutes_errados) {
+		cout << letra << " ";
+	}
+
+}
+
+void imprime_palavra() {
+
+	for(char letra : PALAVRA_SECRETA) {
+		if(chutou[letra]) {
+			cout << letra << " ";
+		} else {
+			cout << "_ ";
+		}
+	}
+
+}
+
+void chuta() {
+
+	cout << "Digite o seu chute: ";
+	cin >> chute;
+
+	chutou[chute] = true;
+
+	if(letra_existe(chute)) {
+		cout << "Você acertou, a letra " << chute << " está na palavra" << endl;
+	} else {
+		cout << "Você errou, a letra " << chute << " não está na palavra" << endl;
+		chutes_errados.push_back(chute);
+	}
 	cout << endl;
 
-	char chute;
+}
+
+int main() {
+	
+	imprime_cabecalho();
+	cout << endl;
 
 	while(!acertou() && !enforcou()) {
 
-		cout << "Chutes errados: ";
-		for(char letra : chutes_errados) {
-			cout << letra << " ";
-		}
+		imprime_erros();
 		cout << endl;
 
-		for(char letra : PALAVRA_SECRETA) {
-			if(chutou[letra]) {
-				cout << letra << " ";
-			} else {
-				cout << "_ ";
-			}
-		}
+		imprime_palavra();
 		cout << endl;
+		
+		chuta();
 
-		cout << "Digite o seu chute: ";
-		cin >> chute;
-	
-		chutou[chute] = true;
-
-		if(letra_existe(chute)) {
-			cout << "Você acertou, a letra " << chute << " está na palavra" << endl;
-		} else {
-			cout << "Você errou, a letra " << chute << " não está na palavra" << endl;
-			chutes_errados.push_back(chute);
-		}
-		cout << endl;
 	}
 	
 	cout << "Fim de jogo!" << endl;
