@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -80,10 +81,30 @@ void chuta() {
 
 }
 
+void le_arquivo() {
+
+	ifstream arquivo;
+	arquivo.open("./palavras.txt");
+	
+	int quantidade_palavras;
+	arquivo >> quantidade_palavras;
+
+	string palavra_lida;
+
+	for(int i = 0; i < quantidade_palavras; i++) {
+
+		arquivo >> palavra_lida;
+			
+	}
+
+}
+
 int main() {
 	
 	imprime_cabecalho();
 	cout << endl;
+	
+	le_arquivo();
 
 	while(!acertou() && !enforcou()) {
 
