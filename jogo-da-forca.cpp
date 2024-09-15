@@ -121,6 +121,38 @@ void sorteia_palavra() {
 
 }
 
+void salva_arquivo(vector<string> nova_lista) {
+
+	ofstream arquivo;
+	arquivo.open("./palavras.txt");
+	if(!arquivo.is_open()) {
+		cout << "Falha ao salvar o arquivo." << endl;
+		exit(0);
+	}
+	
+	arquivo << nova_lista.size() << endl;
+	for(string palavra : nova_lista) {
+		arquivo << palavra << endl;
+	}
+	
+	cout << "Sua palavra foi salva! Obrigado por contribuir com o jogo!" << endl;
+	arquivo.close();
+
+}
+
+void adiciona_palavra() {
+	
+	cout << "Digite a nova palavra usando letras maiusculas: " << endl;
+	string nova_palavra;
+	cin >> nova_palavra;
+	
+	vector<string> lista_palavras = le_arquivo();
+	lista_palavras.push_back(nova_palavra);
+
+	salva_arquivo(lista_palavras);
+
+}
+
 int main() {
 	
 	imprime_cabecalho();
@@ -144,6 +176,12 @@ int main() {
 	cout << "A palavra era " << palavra_secreta << "." << endl;
 	if(acertou()) {
 		cout << "Parabéns, você acertou a palavra." << endl;
+		cout << "Você deseja adicionar uma palavra nova ? (S/N)" << endl;
+		char resposta;
+		cin >> resposta;
+		if(resposta == 'S') {
+			adiciona_palavra();
+		}
 	} else {
 		cout << "Você perdeu, tente novamente." << endl;
 	}
