@@ -88,6 +88,11 @@ vector<string> le_arquivo() {
 	ifstream arquivo;
 	arquivo.open("./palavras.txt");
 	
+	if(!arquivo.is_open()) {
+		cout << "Não foi possível acessar o banco de palavras" << endl;
+		exit(0);
+	}
+
 	int quantidade_palavras;
 	arquivo >> quantidade_palavras;
 
@@ -101,7 +106,8 @@ vector<string> le_arquivo() {
 		palavras_do_arquivo.push_back(palavra_lida);	
 
 	}
-
+	
+	arquivo.close();
 	return palavras_do_arquivo;
 
 }
@@ -121,8 +127,7 @@ int main() {
 	cout << endl;
 	
 	sorteia_palavra();
-	cout << "A palavra sorteada é " << palavra_secreta << endl;
-
+	
 	while(!acertou() && !enforcou()) {
 
 		imprime_erros();
