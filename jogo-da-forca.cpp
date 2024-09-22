@@ -25,22 +25,15 @@ int main() {
 	
 	imprime_cabecalho();
 	cout << endl;
-	
 	sorteia_palavra();
 	
 	while(!acertou() && !enforcou()) {
-
 		imprime_erros();
 		cout << endl;
-
 		imprime_palavra();
 		cout << endl;
-		
 		chuta();
-
 	}
-
-
 
 	cout << "Fim de jogo!" << endl;
 	cout << "A palavra era " << palavra_secreta << "." << endl;
