@@ -2,7 +2,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-#include "le_arquivo.cpp"
+#include "le_arquivo.hpp"
 
 std::string palavra_secreta;
 

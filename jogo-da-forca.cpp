@@ -5,14 +5,14 @@
 #include <fstream>
 #include <ctime>
 #include <cstdlib>
-#include "imprime_cabecalho.cpp"
-#include "sorteia_palavra.cpp"
-#include "acertou.cpp"
-#include "enforcou.cpp"
-#include "imprime_erros.cpp"
-#include "imprime_palavra.cpp"
-#include "chuta.cpp"
-#include "adiciona_palavra.cpp"
+#include "imprime_cabecalho.hpp"
+#include "sorteia_palavra.hpp"
+#include "acertou.hpp"
+#include "enforcou.hpp"
+#include "imprime_erros.hpp"
+#include "imprime_palavra.hpp"
+#include "chuta.hpp"
+#include "adiciona_palavra.hpp"
 
 using namespace std;
 
