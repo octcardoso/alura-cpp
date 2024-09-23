@@ -1,7 +1,6 @@
-#include <vector>
-#include <string>
 #include <fstream>
 #include <iostream>
+#include "salva_arquivo.hpp"
 
 void salva_arquivo(std::vector<std::string> nova_lista) {
 

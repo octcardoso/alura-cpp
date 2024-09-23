@@ -1,6 +1,7 @@
 #include <vector>
 
-std::vector<char> chutes_errados;
+extern std::vector<char> chutes_errados;
+
 bool enforcou() {
 	return chutes_errados.size() > 4;
 }

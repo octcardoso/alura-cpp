@@ -1,1 +1,1 @@
-void sorteia_palavra()
+void sorteia_palavra();
